@@ -8,8 +8,6 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const clamp = (n) => Math.max(0, Math.min(100, Math.round(n)));
 const ok = (r) => Number.isFinite(r?.used_percentage);
 const hhmm = (d) => d.toTimeString().slice(0, 5);
-// 256-color codes: Apple Terminal has no 24-bit color.
-const paint = (code, s) => `\x1b[38;5;${code}m${s}\x1b[0m`;
 const colorOf = (left) => (left > 50 ? 114 : left > 20 ? 221 : 203);
 
 function card(u, now = Date.now()) {
@@ -30,15 +28,32 @@ function card(u, now = Date.now()) {
   return { left, mood, wins };
 }
 
-const FACE = { sleep: '(-.-) zZ', tired: '(;_;)', happy: '\\(^o^)/ ✦', walk: '(•_•)>' };
+const fg = (c, s) => `\x1b[38;5;${c}m${s}\x1b[0m`;
+// Clawd: 2-row half-block sprite, eyes change with mood.
+const EYE = { sleep: '-', tired: ';', happy: '^', walk: '•' };
+const EXTRA = { sleep: ' zZ', tired: '', happy: ' ✦', walk: '' };
+const ORANGE = 173;
+
+function sprite(mood) {
+  const eye = `\x1b[48;5;${ORANGE};38;5;16m${EYE[mood]}\x1b[0m`;
+  return [`${fg(ORANGE, '▐▛')}${eye}${fg(ORANGE, '█')}${eye}${fg(ORANGE, '▜▌')}${EXTRA[mood]}`, fg(ORANGE, '▝▜███▛▘')];
+}
+
+// Each filled cell is colored by its position, so the bar reads like a gauge.
+const cellColor = (i) => (i < 2 ? 203 : i < 5 ? 221 : 114);
 
 function render(c) {
   const seg = (w) => {
     const cells = Math.round(w.left / 10);
-    const bar = '█'.repeat(cells) + '░'.repeat(10 - cells);
-    return `${w.name} ${paint(colorOf(w.left), `${bar} ${w.left}%`)}${w.at ? ` ↻${w.at}` : ''}`;
+    let bar = '';
+    for (let i = 0; i < 10; i++) bar += i < cells ? fg(cellColor(i), '█') : fg(238, '░');
+    return `${w.name.padEnd(4)} ${bar} ${fg(colorOf(w.left), `${w.left}%`.padStart(4))}${w.at ? ` ↻${w.at}` : ''}`;
   };
-  return `${FACE[c.mood]} ${c.wins.map(seg).join(' │ ')}`;
+  const [top, bottom] = sprite(c.mood);
+  const [a, b = ''] = c.wins.map(seg);
+  // Pad the sprite's top row to a fixed width so both bars line up.
+  const pad = ' '.repeat(Math.max(1, 12 - [...top.replace(/\x1b\[[0-9;]*m/g, '')].length));
+  return `${top}${pad}${a}\n${bottom}     ${b}`.trimEnd();
 }
 
 // realpath so a symlinked install still counts as the main script.

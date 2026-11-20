@@ -1,9 +1,10 @@
 # usage-counter-terminal
 
-Claude Code statusline that shows how much of your weekly usage is left, as a face and a 10-cell battery:
+Claude Code statusline that shows how much of your weekly usage is left, as a pixel Clawd and 10-cell bars (two lines):
 
 ```
-\(^o^)/ ✦ 5h █████████░ 94% ↻18:53 │ week ██████████ 98% ↻Mon 01:30
+▐▛^█^▜▌ ✦  5h  ███████████░ 94% ↻22:40
+▝▜███▛▘     week ██████████ 98% ↻Fri 00:00
 ```
 
 - Above 60% left: happy. 21–60%: walking. 20% or less: tired, red. 0%: asleep.
