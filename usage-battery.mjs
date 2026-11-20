@@ -46,7 +46,7 @@ function render(c) {
   const seg = (w) => {
     const cells = Math.round(w.left / 10);
     let bar = '';
-    for (let i = 0; i < 10; i++) bar += i < cells ? fg(cellColor(i), '█') : fg(238, '░');
+    for (let i = 0; i < 10; i++) bar += i < cells ? fg(cellColor(i), '█') : fg(240, '█');
     return `${w.name.padEnd(4)} ${bar} ${fg(colorOf(w.left), `${w.left}%`.padStart(4))}${w.at ? ` ↻${w.at}` : ''}`;
   };
   const [top, bottom] = sprite(c.mood);
