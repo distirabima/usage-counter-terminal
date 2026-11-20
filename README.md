@@ -3,7 +3,7 @@
 Claude Code statusline that shows how much of your weekly usage is left, as a pixel Clawd and 10-cell bars (two lines):
 
 ```
-▐▛^█^▜▌ ✦  5h  ███████████░ 94% ↻22:40
+▐▛^█^▜▌ ✦  5h  █████████░ 94% ↻22:40
 ▝▜███▛▘     week ██████████ 98% ↻Fri 00:00
 ```
 
