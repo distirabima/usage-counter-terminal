@@ -1,0 +1,9 @@
+{
+  "name": "usage-counter-terminal",
+  "description": "Claude Code statusline showing 5h and weekly usage left as a pixel Clawd with bars",
+  "version": "0.1.0",
+  "author": { "name": "distirabima" },
+  "homepage": "https://github.com/distirabima/usage-counter-terminal",
+  "repository": "https://github.com/distirabima/usage-counter-terminal",
+  "license": "MIT"
+}

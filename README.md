@@ -13,6 +13,16 @@ Claude Code statusline that shows how much of your weekly usage is left, as a pi
 
 ## Install
 
+As a plugin:
+
+```
+/plugin marketplace add distirabima/usage-counter-terminal
+/plugin install usage-counter-terminal@usage-counter-terminal
+/usage-counter-terminal:setup
+```
+
+Manual:
+
 Needs Node 18+. Add to `~/.claude/settings.json`:
 
 ```json

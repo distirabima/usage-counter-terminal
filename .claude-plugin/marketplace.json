@@ -1,0 +1,11 @@
+{
+  "name": "usage-counter-terminal",
+  "owner": { "name": "distirabima" },
+  "plugins": [
+    {
+      "name": "usage-counter-terminal",
+      "source": "./",
+      "description": "Claude Code statusline showing 5h and weekly usage left as a pixel Clawd with bars"
+    }
+  ]
+}
