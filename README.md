@@ -3,11 +3,11 @@
 Claude Code statusline that shows how much of your weekly usage is left, as a face and a 10-cell battery:
 
 ```
-\(^o^)/ ✦ [█████████░] 90% WEEKLY · resets Mon 01:27 │ 5h 70% · refills 18:53
+\(^o^)/ ✦ 5h █████████░ 94% ↻18:53 │ week ██████████ 98% ↻Mon 01:30
 ```
 
 - Above 60% left: happy. 21–60%: walking. 20% or less: tired, red. 0%: asleep.
-- Without plan limits (API key) it shows context-window usage instead.
+- Shows the 5-hour and weekly windows side by side; the tightest one sets the face. Without plan limits (API key) it shows context-window usage.
 - It appears in the statusline row below the input box. The position cannot be moved.
 
 ## Install
